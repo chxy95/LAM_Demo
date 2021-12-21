@@ -14,10 +14,12 @@ from SaliencyModel.utils import grad_norm, IG_baseline, interpolation, isotropic
 model_name = 'SwinIR'
 window_size = 16 # 80  # Define windoes_size of D
 image_path = './test_images/7.png'
-w = 110  # The x coordinate of your select patch, 125 as an example
-h = 150  # The y coordinate of your select patch, 160 as an example
+w = 175  # The x coordinate of your select patch, 125 as an example
+h = 130  # The y coordinate of your select patch, 160 as an example
         # And check the red box
         # Is your selected patch this one? If not, adjust the `w` and `h`.
+image_name = os.path.basename(image_path)[:-4]
+idx = 2
 
 for model_variants in ['SRx4_win8', 'SRx4_win16', 'SRx4_win32']:
     model = load_model(model_name + '@' + model_variants)
@@ -48,4 +50,4 @@ for model_variants in ['SRx4_win8', 'SRx4_win16', 'SRx4_win32']:
         Tensor2PIL(torch.clamp(torch.from_numpy(result), min=0., max=1.))]
     )
 
-    pil.save('./Results/' + '_'.join([model_name, model_variants]) + '.png')
+    pil.save('./Results/' + '_'.join([model_name, model_variants, image_name, str(idx)]) + '.png')
