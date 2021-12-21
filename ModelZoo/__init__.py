@@ -9,7 +9,8 @@ NN_LIST = [
     'CARN',
     'RRDBNet',
     'RNAN', 
-    'SAN'
+    'SAN',
+    'SwinIR'
 ]
 
 
@@ -29,6 +30,11 @@ MODEL_LIST = {
     'RNAN': {
         'Base': 'RNAN_SR_F64G10P48BIX4.pt',
     },
+    'SwinIR':{
+        'SRx4_win8': 'SwinIR_W8_SRx4_DF2K.pth',
+        'SRx4_win16': 'SwinIR_W16_SRx4_DF2K.pth',
+        'SRx4_win32': 'SwinIR_W32_SRx4_DF2K.pth',
+    }
 }
 
 def print_network(model, model_name):
@@ -40,7 +46,7 @@ def print_network(model, model_name):
           % (model_name, num_params / 1000))
 
 
-def get_model(model_name, factor=4, num_channels=3):
+def get_model(model_name, training_name=None, factor=4, num_channels=3):
     """
     All the models are defaulted to be X4 models, the Channels is defaulted to be RGB 3 channels.
     :param model_name:
@@ -71,6 +77,15 @@ def get_model(model_name, factor=4, num_channels=3):
             from .NN.rnan import RNAN
             net = RNAN(factor=factor, num_channels=num_channels)
 
+        elif model_name == 'SwinIR':
+            from .NN.swinir import SwinIR_wConv
+            if training_name == 'SRx4_win8':
+                net = SwinIR_wConv(img_size=64, window_size=8, upscale=factor)
+            elif training_name == 'SRx4_win16':
+                net = SwinIR_wConv(img_size=64, window_size=16, upscale=factor)
+            elif training_name == 'SRx4_win32':
+                net = SwinIR_wConv(img_size=64, window_size=32, upscale=factor)
+
         else:
             raise NotImplementedError()
 
@@ -95,11 +110,20 @@ def load_model(model_loading_name):
     else:
         raise NotImplementedError()
     assert model_name in NN_LIST or model_name in MODEL_LIST.keys(), 'check your model name before @'
-    net = get_model(model_name)
+    net = get_model(model_name, training_name)
     state_dict_path = os.path.join(MODEL_DIR, MODEL_LIST[model_name][training_name])
     print(f'Loading model {state_dict_path} for {model_name} network.')
-    state_dict = torch.load(state_dict_path, map_location='cpu')
-    net.load_state_dict(state_dict)
+
+    if model_name == 'SwinIR':
+        loadnet = torch.load(state_dict_path)
+        if 'params_ema' in loadnet:
+            keyname = 'params_ema'
+        else:
+            keyname = 'params'
+        net.load_state_dict(loadnet[keyname], strict=True)
+    else:
+        state_dict = torch.load(state_dict_path)
+        net.load_state_dict(state_dict)
     return net
 
 
