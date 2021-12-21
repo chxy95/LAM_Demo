@@ -107,8 +107,8 @@ def Path_gradient(numpy_image, model, attr_objective, path_interpolation_func, c
                 grad[np.isnan(grad)] = 0.0
 
         grad_accumulate_list[i] = grad * lambda_derivative_interpolation[i]
-        result_list.append(result)
-    results_numpy = np.asarray(result_list)
+        result_list.append(result.detach().cpu().numpy())
+    results_numpy = np.array(result_list)
     return grad_accumulate_list, results_numpy, image_interpolation
 
 

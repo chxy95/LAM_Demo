@@ -1,7 +1,7 @@
 import os
 import torch
 
-MODEL_DIR = '/content/LAM_Demo/ModelZoo/models'
+MODEL_DIR = './ModelZoo/models'
 
 
 NN_LIST = [

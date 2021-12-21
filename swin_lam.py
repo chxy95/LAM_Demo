@@ -45,7 +45,7 @@ for model_variants in ['SRx4_win8', 'SRx4_win16', 'SRx4_win32']:
         saliency_image_abs,
         blend_abs_and_input,
         blend_kde_and_input,
-        Tensor2PIL(torch.clamp(result, min=0., max=1.))]
+        Tensor2PIL(torch.clamp(torch.from_numpy(result), min=0., max=1.))]
     )
 
-    pil.save('./Results/' + model_name + '.png')
+    pil.save('./Results/' + '_'.join([model_name, model_variants]) + '.png')
