@@ -10,7 +10,8 @@ NN_LIST = [
     'RRDBNet',
     'RNAN', 
     'SAN',
-    'SwinIR'
+    'SwinIR',
+    'ECCV'
 ]
 
 
@@ -34,7 +35,14 @@ MODEL_LIST = {
         'SRx4_win8': 'SwinIR_W8_SRx4_DF2K.pth',
         'SRx4_win16': 'SwinIR_W16_SRx4_DF2K.pth',
         'SRx4_win32': 'SwinIR_W32_SRx4_DF2K.pth',
+    },
+    'ECCV':{
+        'Baseline': '213.pth',
+        'OCAB': '396.pth',
+        'CAB': '418.pth',
+        'Ours': '416.pth'
     }
+
 }
 
 def print_network(model, model_name):
@@ -86,6 +94,19 @@ def get_model(model_name, training_name=None, factor=4, num_channels=3):
             elif training_name == 'SRx4_win32':
                 net = SwinIR_wConv(img_size=64, window_size=32, upscale=factor)
 
+        elif model_name == 'ECCV':
+            if training_name == 'Baseline':
+                from .NN.213 import SwinIR_wConv
+                net = SwinIR_wConv()
+            elif training_name == 'OCAB':
+                from .NN.396 import SwinIR_Cascade_Overlap_Win
+                net = SwinIR_Cascade_Overlap_Win()
+            elif training_name == 'CAB':
+                from .NN.418 import SwinIR_Parallel_Compress_CAB
+                net = SwinIR_Parallel_Compress_CAB()
+            elif training_name == 'Ours':
+                from .NN.416 import Final_Model
+                net = Final_Model()
         else:
             raise NotImplementedError()
 
@@ -114,7 +135,7 @@ def load_model(model_loading_name):
     state_dict_path = os.path.join(MODEL_DIR, MODEL_LIST[model_name][training_name])
     print(f'Loading model {state_dict_path} for {model_name} network.')
 
-    if model_name == 'SwinIR':
+    if model_name in ['SwinIR', 'ECCV'] :
         loadnet = torch.load(state_dict_path)
         if 'params_ema' in loadnet:
             keyname = 'params_ema'
