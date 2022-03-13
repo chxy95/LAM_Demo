@@ -156,15 +156,12 @@ def load_model(model_loading_name):
     state_dict_path = os.path.join(MODEL_DIR, MODEL_LIST[model_name][training_name])
     print(f'Loading model {state_dict_path} for {model_name} network.')
 
-    if model_name in ['SwinIR', 'ECCV', 'ECCV2'] :
-        loadnet = torch.load(state_dict_path)
-        if 'params_ema' in loadnet:
-            keyname = 'params_ema'
-        else:
-            keyname = 'params'
-        net.load_state_dict(loadnet[keyname], strict=True)
+    state_dict = torch.load(state_dict_path)
+    if 'params_ema' in state_dict:
+        net.load_state_dict(state_dict['params_ema'], strict=True)
+    elif 'params_ema' in state_dict:
+        net.load_state_dict(state_dict['params_ema'], strict=True)
     else:
-        state_dict = torch.load(state_dict_path)
         net.load_state_dict(state_dict)
     return net
 

@@ -12,12 +12,12 @@ from SaliencyModel.BackProp import GaussianBlurPath
 from SaliencyModel.utils import grad_norm, IG_baseline, interpolation, isotropic_gaussian_kernel
 
 model_name = 'ECCV2'
-image_path, window_size, w, h = './test_images/4.png', 16, 180, 140
+image_path, window_size, w, h = './test_images/4.png', 16, 140, 225
 
 
 image_name = os.path.basename(image_path)[:-4]
 
-for model_variants in ['Ours', 'SwinIR', 'RCAN', 'EDSR']:
+for model_variants in ['EDSR', 'RCAN', 'SwinIR', 'Ours']:
     model = load_model(model_name + '@' + model_variants)
 
     img_lr, img_hr = prepare_images(image_path)  # Change this image name
