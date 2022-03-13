@@ -14,7 +14,12 @@ from SaliencyModel.utils import grad_norm, IG_baseline, interpolation, isotropic
 model_name = 'ECCV2'
 # image_path, window_size, w, h = './test_images/4.png', 16, 140, 180
 # image_path, window_size, w, h = './test_images/AkkeraKanjinchou.png', 24, 157, 86
+<<<<<<< HEAD
 image_path, window_size, w, h = './test_images/img_059.png', 24, 105, 68
+=======
+# image_path, window_size, w, h = './test_images/img_059.png', 24, 105, 68
+image_path, window_size, w, h = './test_images/6.png', 24, 139, 100
+>>>>>>> 6203eec109116ebad82dca44eb99b2bcdf8506b6
 
 
 image_name = os.path.basename(image_path)[:-4]
