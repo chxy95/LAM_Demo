@@ -96,16 +96,16 @@ def get_model(model_name, training_name=None, factor=4, num_channels=3):
 
         elif model_name == 'ECCV':
             if training_name == 'Baseline':
-                from .NN.213 import SwinIR_wConv
+                from .NN.Baseline import SwinIR_wConv
                 net = SwinIR_wConv()
             elif training_name == 'OCAB':
-                from .NN.396 import SwinIR_Cascade_Overlap_Win
+                from .NN.OCAB import SwinIR_Cascade_Overlap_Win
                 net = SwinIR_Cascade_Overlap_Win()
             elif training_name == 'CAB':
-                from .NN.418 import SwinIR_Parallel_Compress_CAB
+                from .NN.CAB import SwinIR_Parallel_Compress_CAB
                 net = SwinIR_Parallel_Compress_CAB()
             elif training_name == 'Ours':
-                from .NN.416 import Final_Model
+                from .NN.Ours import Final_Model
                 net = Final_Model()
         else:
             raise NotImplementedError()

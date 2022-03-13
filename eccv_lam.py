@@ -15,7 +15,7 @@ model_name = 'ECCV'
 window_size = 16 # 80  # Define windoes_size of D
 image_path = './test_images/img_062_crop_2.png'
 w = 175  # The x coordinate of your select patch, 125 as an example
-h = 130  # The y coordinate of your select patch, 160 as an example
+h = 125  # The y coordinate of your select patch, 160 as an example
         # And check the red box
         # Is your selected patch this one? If not, adjust the `w` and `h`.
 image_name = os.path.basename(image_path)[:-4]
@@ -48,5 +48,8 @@ for model_variants in ['Baseline', 'OCAB', 'CAB', 'Ours']:
         blend_kde_and_input,
         Tensor2PIL(torch.clamp(torch.from_numpy(result), min=0., max=1.))]
     )
-
+    
+    gini_index = gini(abs_normed_grad_numpy)
+    diffusion_index = (1 - gini_index) * 100
+    print(f"The DI of this case is {diffusion_index}")
     pil.save('./Results/' + '_'.join([model_name, model_variants, image_name]) + '.png')

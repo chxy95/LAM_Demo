@@ -12,14 +12,14 @@ from SaliencyModel.BackProp import GaussianBlurPath
 from SaliencyModel.utils import grad_norm, IG_baseline, interpolation, isotropic_gaussian_kernel
 
 model_name = 'SwinIR'
-window_size = 16 # 80  # Define windoes_size of D
-image_path = './test_images/7.png'
-w = 175  # The x coordinate of your select patch, 125 as an example
-h = 130  # The y coordinate of your select patch, 160 as an example
+window_size = 40 # 80  # Define windoes_size of D
+image_path = './test_images/Belmondo.png'
+w = 11  # The x coordinate of your select patch, 125 as an example
+h = 18  # The y coordinate of your select patch, 160 as an example
         # And check the red box
         # Is your selected patch this one? If not, adjust the `w` and `h`.
 image_name = os.path.basename(image_path)[:-4]
-idx = 2
+idx = 1
 
 for model_variants in ['SRx4_win8', 'SRx4_win16', 'SRx4_win32']:
     model = load_model(model_name + '@' + model_variants)
