@@ -11,7 +11,8 @@ NN_LIST = [
     'RNAN', 
     'SAN',
     'SwinIR',
-    'ECCV'
+    'ECCV',
+    'ECCV2'
 ]
 
 
@@ -41,6 +42,12 @@ MODEL_LIST = {
         'OCAB': '396.pth',
         'CAB': '418.pth',
         'Ours': '416.pth'
+    },
+    'ECCV2':{
+        'Ours': '435.pth',
+        'SwinIR': 'SwinIR_W8_SRx4_DF2K.pth',
+        'RCAN': 'RCAN.pt',
+        'EDSR': 'EDSR-64-16_15000.pth'
     }
 
 }
@@ -107,6 +114,20 @@ def get_model(model_name, training_name=None, factor=4, num_channels=3):
             elif training_name == 'Ours':
                 from .NN.Ours import Final_Model
                 net = Final_Model()
+        
+        elif model_name == 'ECCV2':
+            if training_name == 'Ours':
+                from .NN.Ours import Final_Model
+                net = Final_Model()
+            elif training_name == 'SwinIR':
+                from .NN.swinir import SwinIR_wConv
+                net = SwinIR_wConv(img_size=64, window_size=8, upscale=factor)
+            elif training_name == 'RCAN':
+                from .NN.rcan import RCAN
+                net = RCAN(factor=4, num_channels=3)
+            elif training_name == 'EDSR':
+                from .NN.edsr import EDSR
+                net = EDSR(factor=4, num_channels=3)
         else:
             raise NotImplementedError()
 
@@ -135,7 +156,7 @@ def load_model(model_loading_name):
     state_dict_path = os.path.join(MODEL_DIR, MODEL_LIST[model_name][training_name])
     print(f'Loading model {state_dict_path} for {model_name} network.')
 
-    if model_name in ['SwinIR', 'ECCV'] :
+    if model_name in ['SwinIR', 'ECCV', 'ECCV2'] :
         loadnet = torch.load(state_dict_path)
         if 'params_ema' in loadnet:
             keyname = 'params_ema'
