@@ -1,0 +1,16 @@
+Getting SR Network ECCV2
+Network [ECCV2] was created. Total number of parameters: 1517.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/EDSR-64-16_15000.pth for ECCV2 network.
+The DI of this case is 3.619620369867438
+Getting SR Network ECCV2
+Network [ECCV2] was created. Total number of parameters: 15592.4 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/RCAN.pt for ECCV2 network.
+The DI of this case is 19.472784039605717
+Getting SR Network ECCV2
+Network [ECCV2] was created. Total number of parameters: 11900.2 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/SwinIR_W8_SRx4_DF2K.pth for ECCV2 network.
+The DI of this case is 12.460199289214046
+Getting SR Network ECCV2
+Network [ECCV2] was created. Total number of parameters: 20772.5 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/435.pth for ECCV2 network.
+The DI of this case is 17.68251244821586
