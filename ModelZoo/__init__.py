@@ -12,7 +12,8 @@ NN_LIST = [
     'SAN',
     'SwinIR',
     'ECCV',
-    'ECCV2'
+    'ECCV2',
+    'Restormer'
 ]
 
 
@@ -48,8 +49,10 @@ MODEL_LIST = {
         'SwinIR': 'SwinIR_W8_SRx4_DF2K.pth',
         'RCAN': 'RCAN.pt',
         'EDSR': 'EDSR-64-16_15000.pth'
-    }
-
+    },
+    'Restormer': {
+        'ICCV-013': 'restormer_iccv_013.pth',
+    },
 }
 
 def print_network(model, model_name):
