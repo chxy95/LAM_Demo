@@ -1,0 +1,41 @@
+image_path, window_size, w, h = './test_images/7.png', 16, 120, 95
+Getting SR Network Restormer
+Initializing RestormerSR
+Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
+The DI of this case is 31.69362578209184
+
+image_path, window_size, w, h = './test_images/4.png', 16, 140, 180
+Getting SR Network Restormer
+Initializing RestormerSR
+Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
+The DI of this case is 22.67621488141438
+
+image_path, window_size, w, h = './test_images/AkkeraKanjinchou.png', 24, 157, 86
+Getting SR Network Restormer
+Initializing RestormerSR
+Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
+The DI of this case is 27.295688444784183
+
+image_path, window_size, w, h = './test_images/img_059.png', 24, 105, 68
+Getting SR Network Restormer
+Initializing RestormerSR
+Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
+The DI of this case is 22.398145192671425
+
+image_path, window_size, w, h = './test_images/6_crop.png', 24, 138, 110
+Getting SR Network Restormer
+Initializing RestormerSR
+Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
+The DI of this case is 29.63049457009027
+
+image_path, window_size, w, h = './test_images/img_019.png', 24, 119, 115
+Getting SR Network Restormer
+Initializing RestormerSR
+Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
+Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
+The DI of this case is 28.632463234422424

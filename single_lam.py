@@ -16,8 +16,8 @@ model_name = 'Restormer'
 # image_path, window_size, w, h = './test_images/AkkeraKanjinchou.png', 24, 157, 86
 # image_path, window_size, w, h = './test_images/img_059.png', 24, 105, 68
 # image_path, window_size, w, h = './test_images/6_crop.png', 24, 138, 110
-# image_path, window_size, w, h = './test_images/img_019.png', 24, 119, 115
-image_path, window_size, w, h = './test_images/7.png', 16, 120, 95
+image_path, window_size, w, h = './test_images/img_019.png', 24, 119, 115
+# image_path, window_size, w, h = './test_images/7.png', 16, 120, 95
 
 
 image_name = os.path.basename(image_path)[:-4]

@@ -1,5 +1,0 @@
-Getting SR Network Restormer
-Initializing RestormerSR
-Network [Restormer] was created. Total number of parameters: 26126.6 kelo. To see the architecture, do print(network).
-Loading model ./ModelZoo/models/restormer_iccv_013.pth for Restormer network.
-The DI of this case is 31.69362578209184
