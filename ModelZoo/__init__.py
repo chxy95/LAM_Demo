@@ -131,6 +131,11 @@ def get_model(model_name, training_name=None, factor=4, num_channels=3):
             elif training_name == 'EDSR':
                 from .NN.edsr import EDSR
                 net = EDSR(factor=4, num_channels=3)
+        
+        elif model_name == 'Restormer':
+            from .NN.restormer import RestormerSR
+            net = RestormerSR(scale=4)
+
         else:
             raise NotImplementedError()
 
@@ -164,6 +169,8 @@ def load_model(model_loading_name):
         net.load_state_dict(state_dict['params_ema'], strict=True)
     elif 'params_ema' in state_dict:
         net.load_state_dict(state_dict['params_ema'], strict=True)
+    elif 'params' in state_dict:
+        net.load_state_dict(state_dict['params'], strict=True)
     else:
         net.load_state_dict(state_dict)
     return net
